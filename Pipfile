@@ -10,6 +10,7 @@ django = "*"
 psycopg2 = "*"
 python-dotenv = "*"
 djangorestframework = "*"
+djoser = "*"
 
 [requires]
 python_version = "3.9"
