@@ -9,3 +9,9 @@ class FilmSerializers(serializers.ModelSerializer):
     class Meta:
         model = Film
         fields = ['title', 'description', 'publication_date', 'user']
+
+
+class CreateFilmSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Film
+        fields = ('user', 'title', 'description')
