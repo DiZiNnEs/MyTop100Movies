@@ -1,6 +1,4 @@
-from rest_framework import generics
-from rest_framework import mixins
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.response import Response
 
 
@@ -12,12 +10,9 @@ from film_app.models import Film
 from film_app.serializers import FilmSerializers, CreateFilmSerializer
 
 
-class FilmViews(mixins.ListModelMixin, generics.GenericAPIView):
+class FilmViews(ListAPIView):
     queryset = Film.objects.all()
     serializer_class = FilmSerializers
-
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
 
 
 class CreateFilmView(CreateAPIView):
