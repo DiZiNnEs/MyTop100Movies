@@ -17,8 +17,8 @@ class Film(models.Model):
 
 class Actor(models.Model):
     """Actors and directors"""
-    first_name = models.CharField('First name', max_length=32)
-    last_name = models.CharField('Last name', max_length=32)
+    first_name = models.CharField('First name', max_length=100)
+    last_name = models.CharField('Last name', max_length=100)
     age = models.PositiveSmallIntegerField("Age", default=0)
     photo = models.ImageField("Photo of the actor")
 
