@@ -15,6 +15,20 @@ class Film(models.Model):
         return f'{self.user} + {self.title}'
 
 
+class Category(models.Model):
+    """Category"""
+    name = models.CharField('Name', max_length=100)
+    description = models.TextField('Description')
+    url = models.SlugField(max_length=160, unique=True)
+
+    def __str__(self) -> str:
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+
+
 class Actor(models.Model):
     """Actors and directors"""
     first_name = models.CharField('First name', max_length=100)
