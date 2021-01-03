@@ -1,7 +1,8 @@
+from datetime import date
+
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
-
 from rest_framework.authtoken.models import Token
 
 
@@ -28,9 +29,10 @@ class Category(models.Model):
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
 
+
 class Genre(models.Model):
     name = models.CharField('Name', max_length=100)
-    description = models.TextField()
+    description = models.TextField("Description")
     url = models.SlugField(max_length=160, unique=True)
 
     def __str__(self) -> str:
@@ -39,6 +41,7 @@ class Genre(models.Model):
     class Meta:
         verbose_name = 'Genre'
         verbose_name_plural = 'Genres'
+
 
 class Actor(models.Model):
     """Actors and directors"""
@@ -56,3 +59,27 @@ class Actor(models.Model):
     class Meta:
         verbose_name = 'Actors and directors'
         verbose_name_plural = 'Actors and directors'
+
+
+class Movie(models.Model):
+    title = models.CharField('Title', max_length=100)
+    tagline = models.CharField('Tagline', max_length=100, default='')
+    description = models.TextField("Description")
+    poster = models.ImageField("Poster", upload_to="movies/")
+    year = models.PositiveSmallIntegerField("Release data", default=2021)
+    country = models.CharField("Country", max_length=50)
+    directors = models.ManyToManyField(Actor, verbose_name='director', related_name='film_director')
+    actors = models.ManyToManyField(Actor, verbose_name='actor', related_name='film_actor')
+    genres = models.ManyToManyField(Genre, verbose_name='genre', related_name='film_genre')
+    world_premiere = models.DateField("World premiere", default=date.today)
+    budget = models.PositiveIntegerField("Budget", default=0, help_text='indicate dollar amounts')
+    category = models.ForeignKey(Category, verbose_name='Category', on_delete=models.SET_NULL, null=True)
+    url = models.SlugField(max_length=130, unique=True)
+    draft = models.BooleanField("Draft", default=False)
+
+    def __str__(self) -> str:
+        return self.title
+
+    class Meta:
+        verbose_name = 'Movie'
+        verbose_name_plural = 'Movies'
