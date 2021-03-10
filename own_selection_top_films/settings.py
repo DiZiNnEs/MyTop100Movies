@@ -81,13 +81,17 @@ WSGI_APPLICATION = 'own_selection_top_films.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': get_env('DB_NAME'),
+    #     'USER': get_env('DB_USER'),
+    #     'PASSWORD': get_env('DB_PASSWORD'),
+    #     'HOST': get_env('DB_HOST'),
+    #     'PORT': get_env('DB_PORT'),
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': get_env('DB_NAME'),
-        'USER': get_env('DB_USER'),
-        'PASSWORD': get_env('DB_PASSWORD'),
-        'HOST': get_env('DB_HOST'),
-        'PORT': get_env('DB_PORT'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
