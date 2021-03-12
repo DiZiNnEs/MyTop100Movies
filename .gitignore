@@ -1,3 +1,4 @@
 /db.sqlite3
 .idea
 /.env
+/own_selection_top_films/db.sqlite3
