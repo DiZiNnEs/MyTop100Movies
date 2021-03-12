@@ -1,0 +1,3 @@
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('JWT',),
+}
