@@ -1,24 +1,9 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
-from rest_framework.authtoken.models import Token
+
 
 from datetime import date
-
-
-class Film(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
-    title = models.CharField(max_length=50)
-    description = models.TextField('description')
-    publication_date = models.DateTimeField(auto_now=True)
-
-    def __str__(self) -> str:
-        return f'{self.user} + {self.title}'
-
-    class Meta:
-        db_table = 'film'
-        verbose_name = 'Film'
-        verbose_name_plural = 'Films'
 
 
 class Category(models.Model):
@@ -53,7 +38,7 @@ class Actor(models.Model):
     first_name = models.CharField('first name', max_length=100)
     last_name = models.CharField('last name', max_length=100)
     age = models.PositiveSmallIntegerField("age", default=0)
-    photo = models.ImageField("photo of the actor")
+    photo = models.ImageField("photo of the actor", upload_to='media/actors/photos/')
 
     def __str__(self) -> str:
         return f'{self.first_name} {self.last_name}'
@@ -71,7 +56,7 @@ class Movie(models.Model):
     title = models.CharField('title', max_length=100)
     tagline = models.CharField('tagline', max_length=100, default='')
     description = models.TextField("description")
-    poster = models.ImageField("poster", upload_to="movies/")
+    poster = models.ImageField("poster", upload_to="media/movies/posters/")
     year = models.PositiveSmallIntegerField("release data", default=2021)
     country = models.CharField("country", max_length=50)
     directors = models.ManyToManyField(Actor, verbose_name='director', related_name='film_director')

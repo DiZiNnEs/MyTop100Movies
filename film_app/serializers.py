@@ -1,17 +1,11 @@
 from rest_framework import serializers
 
-from film_app.models import Film
+from film_app.models import Movie
 
 
 class FilmSerializers(serializers.ModelSerializer):
     user = serializers.SlugRelatedField(slug_field='username', read_only=True)
 
     class Meta:
-        model = Film
-        fields = ['title', 'description', 'publication_date', 'user']
-
-
-class CreateFilmSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Film
-        fields = ('user', 'title', 'description')
+        model = Movie
+        fields = '__all__'
