@@ -5,17 +5,17 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 
 from film_app.models import Movie
-from film_app.serializers import FilmSerializers
+from film_app.serializers import MovieSerializer
 
 
 class FilmViews(generics.ListAPIView):
     queryset = Movie.objects.all()
-    serializer_class = FilmSerializers
+    serializer_class = MovieSerializer
 
 
 class FilmDetailView(generics.ListAPIView):
     queryset = Movie.objects.all()
-    serializer_class = FilmSerializers
+    serializer_class = MovieSerializer
 
     def get_queryset(self):
         q = Movie.objects.filter(user=self.request.user)
@@ -24,4 +24,4 @@ class FilmDetailView(generics.ListAPIView):
 
 class CreateFilmView(generics.CreateAPIView):
     queryset = Movie
-    serializer_class = FilmSerializers
+    serializer_class = MovieSerializer
