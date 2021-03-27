@@ -5,7 +5,7 @@ from film_app.views import MovieViewSet
 
 
 router = DefaultRouter()
-router.register(r'movie/', MovieViewSet)
+router.register(r'movie', MovieViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
