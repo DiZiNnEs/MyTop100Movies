@@ -1,9 +1,18 @@
-from rest_framework import viewsets, status
-from rest_framework.decorators import action
-from rest_framework.response import Response
+from rest_framework import viewsets
 
-from film_app.models import Movie
-from film_app.serializers import MovieSerializer
+from film_app.serializers import (
+    MovieSerializer,
+    CategorySerializer,
+    ActorSerializer,
+    GenreSerializer
+)
+
+from film_app.models import (
+    Movie,
+    Category,
+    Genre,
+    Actor
+)
 
 
 class MovieViewSet(viewsets.ModelViewSet):
@@ -12,3 +21,18 @@ class MovieViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
         return Movie.objects.filter(user=user)
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
+
+
+class GenreViewSet(viewsets.ModelViewSet):
+    serializer_class = GenreSerializer
+    queryset = Genre.objects.all()
+
+
+class ActorViewSet(viewsets.ModelViewSet):
+    serializer_class = ActorSerializer
+    queryset = Actor.objects.all()
