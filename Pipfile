@@ -12,6 +12,7 @@ python-dotenv = "*"
 djangorestframework = "*"
 djoser = "*"
 pillow = "*"
+sentry-sdk = "*"
 
 [requires]
 python_version = "3.9"
